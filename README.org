@@ -1,4 +1,4 @@
-* current-window-only
+* ~M-x current-window-only~
 
 Open things only in the current window. No other windows, no splits.
 
