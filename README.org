@@ -7,12 +7,12 @@ Open things only in the current window. No other windows, no splits.
 My apologies for not recording key presses. I am basically just
 hitting enter to open things and ~q~ to close things.
 
-| Command            | Before                                  | After                                  |
-|--------------------+-----------------------------------------+----------------------------------------|
-| ~M-x calendar~     | [[images/calendar-before.gif][GIF]]     | [[images/calendar-after.gif][GIF]]     |
-| ~M-x man~          | [[images/man-before.gif][GIF]]          | [[images/man-after.gif][GIF]]          |
-| ~M-x org-agenda~   | [[images/org-agenda-before.gif][GIF]]   | [[images/org-agenda-after.gif][GIF]]   |
-| ~M-x magit-status~ | [[images/magit-status-before.gif][GIF]] | [[images/magit-status-after.gif][GIF]] |
+| Command            | Before                                        | After                                        |
+|--------------------+-----------------------------------------------+----------------------------------------------|
+| ~M-x calendar~     | [[images/calendar-before.gif?raw=1][GIF]]     | [[images/calendar-after.gif?raw=1][GIF]]     |
+| ~M-x man~          | [[images/man-before.gif?raw=1][GIF]]          | [[images/man-after.gif?raw=1][GIF]]          |
+| ~M-x org-agenda~   | [[images/org-agenda-before.gif?raw=1][GIF]]   | [[images/org-agenda-after.gif?raw=1][GIF]]   |
+| ~M-x magit-status~ | [[images/magit-status-before.gif?raw=1][GIF]] | [[images/magit-status-after.gif?raw=1][GIF]] |
 
 ** Installation
 
