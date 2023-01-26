@@ -2,6 +2,18 @@
 
 Open things only in the current window. No other windows, no splits.
 
+** Obligatory GIF section
+
+My apologies for not recording key presses. I am basically just
+hitting enter to open things and ~q~ to close things.
+
+| Command            | Before                                  | After                                  |
+|--------------------+-----------------------------------------+----------------------------------------|
+| ~M-x calendar~     | [[images/calendar-before.gif][GIF]]     | [[images/calendar-after.gif][GIF]]     |
+| ~M-x man~          | [[images/man-before.gif][GIF]]          | [[images/man-after.gif][GIF]]          |
+| ~M-x org-agenda~   | [[images/org-agenda-before.gif][GIF]]   | [[images/org-agenda-after.gif][GIF]]   |
+| ~M-x magit-status~ | [[images/magit-status-before.gif][GIF]] | [[images/magit-status-after.gif][GIF]] |
+
 ** Installation
 
 The package is not available on MELPA yet, please use Quelpa (or your
