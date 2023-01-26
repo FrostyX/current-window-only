@@ -47,6 +47,14 @@
       (current-window-only--on)
     (current-window-only--off)))
 
+;;;; Variables
+
+;; Some modes and packages need to be explicitly said how to behave.
+;; This is the list of variables that this package is going to modify.
+(defvar Man-notify-method)
+(defvar org-src-window-setup)
+(defvar org-agenda-window-setup)
+
 ;;;; Functions
 
 ;;;;; Private
