@@ -17,3 +17,7 @@ preferred package manager) to install.
   :config
   (current-window-only-mode))
 #+END_SRC
+
+** Related projects
+
+- [[https://depp.brause.cc/shackle/][shackle]]
