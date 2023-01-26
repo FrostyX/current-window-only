@@ -9,11 +9,9 @@ preferred package manager) to install.
 
 #+BEGIN_SRC emacs-lisp
 (use-package current-window-only
-  :ensure t
   :quelpa (current-window-only
            :fetcher github
-           :repo "FrostyX/current-window-only"
-           :branch "main")
+           :repo "FrostyX/current-window-only")
   :config
   (current-window-only-mode))
 #+END_SRC
