@@ -5,6 +5,7 @@
 ;; Author: Jakub Kadlčík <frostyx@email.cz>
 ;; URL: https://github.com/FrostyX/current-window-only
 ;; Version: 1.0
+;; Package-Requires: ((emacs "24.4"))
 ;; Keywords: frames
 
 ;;; License:
