@@ -1,0 +1,19 @@
+* current-window-only
+
+Open things only in the current window. No other windows, no splits.
+
+** Installation
+
+The package is not available on MELPA yet, please use Quelpa (or your
+preferred package manager) to install.
+
+#+BEGIN_SRC emacs-lisp
+(use-package current-window-only
+  :ensure t
+  :quelpa (current-window-only
+           :fetcher github
+           :repo "FrostyX/current-window-only"
+           :branch "main")
+  :config
+  (current-window-only-mode))
+#+END_SRC
