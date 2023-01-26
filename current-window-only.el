@@ -83,11 +83,14 @@
    'delete-other-windows
    #'current-window-only--delete-other-windows))
 
-(defun current-window-only--switch-to-buffer-other-window (orig-fun &rest args)
+(defun current-window-only--switch-to-buffer-other-window
+    (buffer-or-name &optional norecord)
   (switch-to-buffer buffer-or-name norecord t))
 
-(defun current-window-only--delete-other-windows (orig-fun &rest args)
-  nil)
+(defun current-window-only--delete-other-windows
+    (&optional window interactive)
+  (ignore window)
+  (ignore interactive))
 
 ;;;; Footer
 
