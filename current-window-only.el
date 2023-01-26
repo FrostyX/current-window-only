@@ -30,6 +30,13 @@
 
 ;;; Code:
 
+;;;; Customization
+
+(defgroup current-window-only nil
+  "Open things only in the current window. No other windows, no splits."
+  :prefix "current-window-only-"
+  :group 'frames)
+
 ;;;; Modes
 
 ;;;###autoload
