@@ -16,8 +16,9 @@ hitting enter to open things and ~q~ to close things.
 
 ** Installation
 
-The package is not available on MELPA yet, please use Quelpa (or your
-preferred package manager) to install.
+The package is not available on MELPA yet.
+
+Please use Quelpa:
 
 #+BEGIN_SRC emacs-lisp
 (use-package current-window-only
@@ -27,6 +28,20 @@ preferred package manager) to install.
   :config
   (current-window-only-mode))
 #+END_SRC
+
+or Straight with the git backend:
+
+#+BEGIN_SRC emacs-lisp
+(use-package current-window-only
+  :straight (current-window-only
+             :type git
+             :host github
+             :repo "FrostyX/current-window-only")
+  :config
+  (current-window-only-mode))
+#+END_SRC
+
+(or your preferred package manager) to install.
 
 ** Related projects
 
