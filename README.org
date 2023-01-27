@@ -16,9 +16,10 @@ hitting enter to open things and ~q~ to close things.
 
 ** Installation
 
-The package is not available on MELPA yet.
+The package is not available in MELPA yet. Please choose your
+preferred package manager to install.
 
-Please use Quelpa:
+Quelpa:
 
 #+BEGIN_SRC emacs-lisp
 (use-package current-window-only
@@ -29,7 +30,7 @@ Please use Quelpa:
   (current-window-only-mode))
 #+END_SRC
 
-or Straight with the git backend:
+Straight:
 
 #+BEGIN_SRC emacs-lisp
 (use-package current-window-only
@@ -41,8 +42,35 @@ or Straight with the git backend:
   (current-window-only-mode))
 #+END_SRC
 
-(or your preferred package manager) to install.
+** Motivation
 
-** Related projects
+The [[DemystifyingEmacs][Demystifying Emacs’s Window Manager]] article
+provides a great explanation of the key concepts, behavior, and
+configuration of the window manager. Are you ready for the red pill
+and seeing how deep the rabbit hole goes? The rest of us want
+reasonable behavior without being required to understand.
 
-- [[https://depp.brause.cc/shackle/][shackle]]
+In short, a user can adjust how buffers should be displayed by adding
+new rules to the ~display-buffer-alist~ variable. The general
+consensus is that the rules are just too cryptic, too complicated, and
+not many people understand them. As a consequence third-party packages
+such as ~shackle~ and ~popwin~ appeared, allowing to define
+human-readable rules.
+
+My humble guess is that the majority of people add rules for Emacs to
+stop breaking their /splits/, to open things in the current window,
+and nothing else. Why define some rules in the first place, when
+you can simply ~M-x current-window-only~?
+
+** See also
+
+- [[DemystifyingEmacs][Demystifying Emacs’s Window Manager]]
+- [[prot][Emacs: window rules and parameters]]
+- [[shackle][shackle]]
+- [[popwin][popwin]]
+
+
+#+LINK: DemystifyingEmacs https://www.masteringemacs.org/article/demystifying-emacs-window-manager
+#+LINK: prot https://www.youtube.com/watch?v=rjOhJMbA-q0
+#+LINK: shackle https://depp.brause.cc/shackle/
+#+LINK: popwin https://github.com/emacsorphanage/popwin
