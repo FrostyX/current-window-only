@@ -60,19 +60,29 @@
 ;;;;; Private
 
 (defun current-window-only--on ()
-  (setq Man-notify-method 'pushy)
-  (setq org-src-window-setup 'current-window)
-  (setq org-agenda-window-setup 'current-window)
-
+  ;; The `display-buffer-alist' is still a magic to me but in the ideal world
+  ;; this should be the only necessary setting.
   (setq display-buffer-alist
         '((".*" (display-buffer-reuse-window
                  display-buffer-same-window)
            (reusable-frames . t))))
 
+  ;; Some packages require a custom configuration just for them
+  (setq Man-notify-method 'pushy)
+  (setq org-src-window-setup 'current-window)
+  (setq org-agenda-window-setup 'current-window)
+
+  ;; The `org-agenda', `org-capture', and probably all commands with the
+  ;; similar input field that expects one character and blocks all other input,
+  ;; don't respect the `display-buffer-alist' variable and appear in some other
+  ;; window. Overriding `switch-to-buffer-other-window' helps.
   (advice-add
    'switch-to-buffer-other-window
    :override #'current-window-only--switch-to-buffer-other-window)
 
+  ;; Commands like `org-agenda' and `org-capture' temporarily maximize some
+  ;; window, change layout, and/or close all other windows when they are
+  ;; finished. This prevents them from doing so.
   (advice-add
    'delete-other-windows
    :override #'current-window-only--delete-other-windows))
