@@ -55,11 +55,26 @@
 (defvar org-src-window-setup)
 (defvar org-agenda-window-setup)
 
+;; We want to rember the variable values that user had before activating the
+;; `current-window-only-mode' in case he decides to disable it. In that case
+;; we want to set the variables to their previous values instead of the
+;; default ones.
+(defvar current-window-only--old-config '())
+
 ;;;; Functions
 
 ;;;;; Private
 
 (defun current-window-only--on ()
+  ;; Remember the user configuration in case we need to restore it
+  (dolist (var '(display-buffer-alist
+                 Man-notify-method
+                 org-src-window-setup
+                 org-agenda-window-setup))
+    (when (boundp var)
+      (setf (alist-get var current-window-only--old-config)
+            (symbol-value var))))
+
   ;; The `display-buffer-alist' is still a magic to me but in the ideal world
   ;; this should be the only necessary setting.
   (setq display-buffer-alist
@@ -88,10 +103,8 @@
    :override #'current-window-only--delete-other-windows))
 
 (defun current-window-only--off ()
-  (setq Man-notify-method 'friendly)
-  (setq org-src-window-setup 'reorganize-frame)
-  (setq org-agenda-window-setup 'reorganize-frame)
-  (setq display-buffer-alist nil)
+  (dolist (item current-window-only--old-config)
+    (set (car item) (cdr item)))
 
   (advice-remove
    'switch-to-buffer-other-window
