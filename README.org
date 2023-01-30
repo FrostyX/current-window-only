@@ -2,6 +2,12 @@
 
 Open things only in the current window. No other windows, no splits.
 
+In the ideal world, this package should not be necessary and one would
+simply configure ~display-buffer-alist~ to display buffers only in the
+current window. But not all commands respect this variable
+(e.g. ~org-agenda~), and so this package implements multiple tricks to
+achieve the desired behavior.
+
 ** Obligatory GIF section
 
 My apologies for not recording key presses. I am basically just
