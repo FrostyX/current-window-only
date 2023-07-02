@@ -20,6 +20,8 @@ hitting enter to open things and ~q~ to close things.
 | ~M-x magit-status~ | [[images/magit-status-before.gif?raw=1][GIF]] | [[images/magit-status-after.gif?raw=1][GIF]] |
 | ~M-x man~          | [[images/man-before.gif?raw=1][GIF]]          | [[images/man-after.gif?raw=1][GIF]]          |
 
+Or you can [[https://www.youtube.com/watch?v=Qut1oO6nqgA][watch a short video]].
+
 ** Installation
 
 The package is not available in MELPA yet. Please choose your
