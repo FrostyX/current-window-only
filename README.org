@@ -77,6 +77,26 @@ you can simply ~M-x current-window-only~?
 - [[shackle][shackle]]
 - [[popwin][popwin]]
 
+** Tips and tricks
+
+You might need to adjust some workflows after enabling the package.
+
+*** Magit commit
+
+When creating a new commit, Magit spawns two buffers - diff with file
+changes and a commit message. It is useful to see the changes while
+writing the commit message but with ~current-window-only~, they will
+open in the same window and therefore only one of them remains
+visible. This is consistent with the goals of this package but if you
+don't like it, you can:
+
+- Use ~evil-switch-to-windows-last-buffer~ or ~C-x b RET~ to easily
+  jump back and forth between the two buffers within one window.
+- Move the cursor to any appropriate window and manually open the
+  other Magit buffer there
+- Use ~(setq magit-commit-diff-inhibit-same-window t)~ to sidestep
+  ~current-window-only~
+
 
 #+LINK: DemystifyingEmacs https://www.masteringemacs.org/article/demystifying-emacs-window-manager
 #+LINK: prot https://www.youtube.com/watch?v=rjOhJMbA-q0
