@@ -54,6 +54,7 @@
 ;; we want to set the variables to their previous values instead of the
 ;; default ones.
 (defvar current-window-only--old-config '())
+(defvar Man-notify-method)
 
 ;;;; Functions
 
@@ -61,14 +62,18 @@
 
 (defun current-window-only--on ()
   ;; Remember the user configuration in case we need to restore it
-  (dolist (var '(display-buffer-overriding-action))
+  (dolist (var '(display-buffer-overriding-action
+		 Man-notify-method))
     (when (boundp var)
       (setf (alist-get var current-window-only--old-config)
             (symbol-value var))))
 
   (setq display-buffer-overriding-action
         '((display-buffer-reuse-window
-           display-buffer-same-window)))
+	   display-buffer-same-window)))
+
+  ;; Some packages require a custom configuration just for them
+  (setq Man-notify-method 'pushy)
 
   ;; The `org-agenda', `org-capture', and probably all commands with the
   ;; similar input field that expects one character and blocks all other input,
