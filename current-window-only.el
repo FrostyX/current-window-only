@@ -49,12 +49,6 @@
 
 ;;;; Variables
 
-;; Some modes and packages need to be explicitly said how to behave.
-;; This is the list of variables that this package is going to modify.
-(defvar Man-notify-method)
-(defvar org-src-window-setup)
-(defvar org-agenda-window-setup)
-
 ;; We want to rember the variable values that user had before activating the
 ;; `current-window-only-mode' in case he decides to disable it. In that case
 ;; we want to set the variables to their previous values instead of the
@@ -67,25 +61,14 @@
 
 (defun current-window-only--on ()
   ;; Remember the user configuration in case we need to restore it
-  (dolist (var '(display-buffer-alist
-                 Man-notify-method
-                 org-src-window-setup
-                 org-agenda-window-setup))
+  (dolist (var '(display-buffer-overriding-action))
     (when (boundp var)
       (setf (alist-get var current-window-only--old-config)
             (symbol-value var))))
 
-  ;; The `display-buffer-alist' is still a magic to me but in the ideal world
-  ;; this should be the only necessary setting.
-  (setq display-buffer-alist
-        '((".*" (display-buffer-reuse-window
-                 display-buffer-same-window)
-           (reusable-frames . t))))
-
-  ;; Some packages require a custom configuration just for them
-  (setq Man-notify-method 'pushy)
-  (setq org-src-window-setup 'current-window)
-  (setq org-agenda-window-setup 'current-window)
+  (setq display-buffer-overriding-action
+        '((display-buffer-reuse-window
+           display-buffer-same-window)))
 
   ;; The `org-agenda', `org-capture', and probably all commands with the
   ;; similar input field that expects one character and blocks all other input,
