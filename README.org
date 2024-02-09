@@ -73,6 +73,7 @@ you can simply ~M-x current-window-only~?
 ** See also
 
 - [[DemystifyingEmacs][Demystifying Emacs’s Window Manager]]
+- [[https://www.youtube.com/watch?v=1-UIzYPn38s][Emacs: control where buffers are displayed]]
 - [[prot][Emacs: window rules and parameters]]
 - [[shackle][shackle]]
 - [[popwin][popwin]]
