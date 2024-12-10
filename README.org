@@ -80,6 +80,24 @@ don't like it, you can:
 - Use ~(setq magit-commit-diff-inhibit-same-window t)~ to sidestep
   ~current-window-only~
 
+*** Explicitly use other window
+
+This package overrides the original ~switch-to-buffer-other-window~ function so
+that it doesn't use the "other" window, and use the current window instead. This
+hack is needed to disallow random Emacs commands from using what windows they
+want. However, someone may want a custom command which ignores this hack.
+
+#+BEGIN_SRC emacs-lisp
+(defun switch-to-buffer-other-window-force ()
+  (interactive)
+  (let ((override #'current-window-only--switch-to-buffer-other-window))
+    (advice-remove 'switch-to-buffer-other-window override)
+    (call-interactively #'switch-to-buffer-other-window)
+    (advice-add 'switch-to-buffer-other-window :override override)))
+#+END_SRC
+
+Running ~M-x switch-to-buffer-other-window-force~ will open the buffer in
+"other" window even when ~current-window-only-mode~ is enabled.
 
 #+LINK: DemystifyingEmacs https://www.masteringemacs.org/article/demystifying-emacs-window-manager
 #+LINK: prot https://www.youtube.com/watch?v=rjOhJMbA-q0
