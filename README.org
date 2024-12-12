@@ -118,6 +118,18 @@ want. However, someone may want a custom command which ignores this hack.
 Running ~M-x switch-to-buffer-other-window-force~ will open the buffer in
 "other" window even when ~current-window-only-mode~ is enabled.
 
+The same can be done for ~delete-other-windows~ and other adviced
+functions.
+
+#+BEGIN_SRC emacs-lisp
+(defun delete-other-windows-force ()
+  (interactive)
+  (let ((override #'current-window-only--delete-other-windows))
+    (advice-remove 'delete-other-windows override)
+    (delete-other-windows)
+    (advice-add 'delete-other-windows :override override)))
+#+END_SRC
+
 #+LINK: DemystifyingEmacs https://www.masteringemacs.org/article/demystifying-emacs-window-manager
 #+LINK: prot https://www.youtube.com/watch?v=rjOhJMbA-q0
 #+LINK: shackle https://depp.brause.cc/shackle/
