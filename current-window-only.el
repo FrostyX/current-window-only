@@ -5,7 +5,7 @@
 ;; Author: Jakub Kadlčík <frostyx@email.cz>
 ;; URL: https://github.com/FrostyX/current-window-only
 ;; Version: 1.0
-;; Package-Requires: ((emacs "24.4"))
+;; Package-Requires: ((emacs "25.1"))
 ;; Keywords: frames
 
 ;;; License:
@@ -25,7 +25,7 @@
 
 ;;; Commentary:
 
-;; Open things only in the current window. No other windows, no splits.
+;; Open things only in the current window.  No other windows, no splits.
 
 
 ;;; Code:
@@ -33,7 +33,7 @@
 ;;;; Customization
 
 (defgroup current-window-only nil
-  "Open things only in the current window. No other windows, no splits."
+  "Open things only in the current window.  No other windows, no splits."
   :prefix "current-window-only-"
   :group 'frames)
 
@@ -41,7 +41,7 @@
 
 ;;;###autoload
 (define-minor-mode current-window-only-mode
-  "Open things only in the current window. No other windows, no splits."
+  "Open things only in the current window.  No other windows, no splits."
   :global t
   (if current-window-only-mode
       (current-window-only--on)
@@ -66,6 +66,7 @@
 ;;;;; Private
 
 (defun current-window-only--on ()
+  "Enable the `current-window-only-mode'."
   ;; Remember the user configuration in case we need to restore it
   (dolist (var '(display-buffer-alist
                  Man-notify-method
@@ -103,6 +104,7 @@
    :override #'current-window-only--delete-other-windows))
 
 (defun current-window-only--off ()
+  "Disable the `current-window-only-mode'."
   (dolist (item current-window-only--old-config)
     (set (car item) (cdr item)))
 
@@ -116,10 +118,15 @@
 
 (defun current-window-only--switch-to-buffer-other-window
     (buffer-or-name &optional norecord)
+  "Override for the `switch-to-buffer-other-window' function.
+It uses the BUFFER-OR-NAME and NORECORD parameters and passes them to a
+`switch-to-buffer'."
   (switch-to-buffer buffer-or-name norecord t))
 
 (defun current-window-only--delete-other-windows
     (&optional window interactive)
+  "Override for the `delete-other-windows' function.
+Do nothing and simply ignore the WINDOW and INTERACTIVE arguments."
   (ignore window)
   (ignore interactive))
 
