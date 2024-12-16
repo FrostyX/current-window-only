@@ -24,30 +24,11 @@ Or you can [[https://www.youtube.com/watch?v=Qut1oO6nqgA][watch a short video]].
 
 ** Installation
 
-The package is not available in MELPA yet. Please choose your
-preferred package manager to install.
-
-Quelpa:
+The package is available on [[https://melpa.org/#/current-window-only][MELPA]]
 
 #+BEGIN_SRC emacs-lisp
 (use-package current-window-only
-  :quelpa (current-window-only
-           :fetcher github
-           :repo "FrostyX/current-window-only")
-  :config
-  (current-window-only-mode))
-#+END_SRC
-
-Straight:
-
-#+BEGIN_SRC emacs-lisp
-(use-package current-window-only
-  :straight (current-window-only
-             :type git
-             :host github
-             :repo "FrostyX/current-window-only")
-  :config
-  (current-window-only-mode))
+  :ensure t)
 #+END_SRC
 
 ** Motivation
