@@ -101,7 +101,18 @@
   ;; finished. This prevents them from doing so.
   (advice-add
    'delete-other-windows
-   :override #'current-window-only--delete-other-windows))
+   :override #'current-window-only--delete-other-windows)
+
+  ;; Commands like `vc-git-grep', `ripgrep-regexp', and other buffers based on
+  ;; the Compilation Mode always keep their main buffer visible and jump to
+  ;; the results in another window. See how `compilation-goto-locus' calls
+  ;; `pop-to-buffer' with an explicit `'other-window' parameter.
+  ;; Also, `find-file' and commands like `projectile-find-file' and
+  ;; `dired-open-file' that are based on top of it, jump into an existing
+  ;; window if a buffer is already opened there.
+  (advice-add
+   'pop-to-buffer
+   :override #'current-window-only--pop-to-buffer))
 
 (defun current-window-only--off ()
   "Disable the `current-window-only-mode'."
@@ -114,7 +125,11 @@
 
   (advice-remove
    'delete-other-windows
-   #'current-window-only--delete-other-windows))
+   #'current-window-only--delete-other-windows)
+
+  (advice-remove
+   'pop-to-buffer
+   #'current-window-only--pop-to-buffer))
 
 (defun current-window-only--switch-to-buffer-other-window
     (buffer-or-name &optional norecord)
@@ -129,6 +144,17 @@ It uses the BUFFER-OR-NAME and NORECORD parameters and passes them to a
 Do nothing and simply ignore the WINDOW and INTERACTIVE arguments."
   (ignore window)
   (ignore interactive))
+
+(defun current-window-only--pop-to-buffer
+    (buffer-or-name &optional action norecord)
+  "Override for the `pop-to-buffer' function.
+The mainly/only purpose of `pop-to-buffer' is to add some window management
+features on top of simple buffer switching.  For example allowing to open the
+buffer in other window or frame, splitting windows etc. We want none of that
+so we can use BUFFER-OR-NAME and NORECORD parameters, pass them to a simple
+`switch-to-buffer' function, and ignore the ACTION parameter completely."
+  (ignore action)
+  (switch-to-buffer buffer-or-name norecord))
 
 ;;;; Footer
 
