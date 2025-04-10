@@ -59,6 +59,7 @@ you can simply ~M-x current-window-only~?
 - [[prot][Emacs: window rules and parameters]]
 - [[shackle][shackle]]
 - [[popwin][popwin]]
+- [[https://github.com/MArpogaus/auto-side-windows][auto-side-windows]]
 
 ** Tips and tricks
 
