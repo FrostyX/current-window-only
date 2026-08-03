@@ -112,7 +112,14 @@
   ;; window if a buffer is already opened there.
   (advice-add
    'pop-to-buffer
-   :override #'current-window-only--pop-to-buffer))
+   :override #'current-window-only--pop-to-buffer)
+
+  ;; Commands like `magit-commit' save the current window layout, do their job,
+  ;; and once they are finished, they run `with-editor-return' to restore the
+  ;; saved layout. That means any window changes you do while comitting get lost
+  (advice-add
+   'with-editor-return
+   :before #'current-window-only--with-editor-return))
 
 (defun current-window-only--off ()
   "Disable the `current-window-only-mode'."
@@ -129,7 +136,11 @@
 
   (advice-remove
    'pop-to-buffer
-   #'current-window-only--pop-to-buffer))
+   #'current-window-only--pop-to-buffer)
+
+  (advice-remove
+   'with-editor-return
+   #'current-window-only--with-editor-return))
 
 (defun current-window-only--switch-to-buffer-other-window
     (buffer-or-name &optional norecord)
@@ -155,6 +166,14 @@ so we can use BUFFER-OR-NAME and NORECORD parameters, pass them to a simple
 `switch-to-buffer' function, and ignore the ACTION parameter completely."
   (ignore action)
   (switch-to-buffer buffer-or-name norecord))
+
+(defun current-window-only--with-editor-return (cancel)
+  "Run this right before `with-editor-return'.
+The `with-editor-return' reads the `with-editor-previous-winconf' variable so
+that it can restore the previous window layout.  We want to run this advice right
+before that, so that we can override the stored previous layout with the current
+layout.  The CANCEL parameter is passed as is to the `with-editor-return'."
+  (setq with-editor-previous-winconf (current-window-configuration)))
 
 ;;;; Footer
 
